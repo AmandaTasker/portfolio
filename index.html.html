@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amanda Tasker - Strategic Experience Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #E8E8E8;
+            background: #0A0A0A;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1A1A1A, #0A0A0A);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(243, 156, 18, 0.1);
+            border-bottom: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: none;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: none;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #E8E8E8;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #F39C12;
+            transform: translateY(-1px);
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #F39C12, #FF6B6B);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(26, 26, 26, 0.95) 100%);
+            color: white;
+            padding: 8rem 0 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 50px 50px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(243, 156, 18, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(255, 107, 107, 0.08) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.7) 0%, rgba(42, 42, 42, 0.6) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #F39C12, #FF6B6B, #F39C12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(243, 156, 18, 0.3));
+            letter-spacing: -0.02em;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+            font-weight: 500;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #F39C12, #FF6B6B);
+            color: #1A1A1A;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(243, 156, 18, 0.4);
+        }
+
+        /* Pathway Divider */
+        .pathway {
+            height: 80px;
+            background: #0A0A0A;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pathway::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -50px;
+            right: -50px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #F39C12, #FF6B6B, #F39C12, transparent);
+            transform: translateY(-50%);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(243, 156, 18, 0.5);
+        }
+
+        .pathway-markers {
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            right: 20%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .marker {
+            width: 10px;
+            height: 10px;
+            background: #F39C12;
+            border-radius: 50%;
+            border: 1px solid #0A0A0A;
+            box-shadow: 0 0 15px rgba(243, 156, 18, 0.8), inset 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #111111, #0A0A0A);
+            position: relative;
+        }
+
+        .about::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(243, 156, 18, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #E8E8E8;
+            font-weight: 600;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-visual {
+            background: linear-gradient(135deg, #1A1A1A, #0A0A0A);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+            box-shadow: 0 0 30px rgba(243, 156, 18, 0.1), inset 0 0 20px rgba(255, 107, 107, 0.05);
+        }
+
+        .about-visual h3 {
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .about-visual p {
+            font-weight: 500;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+        }
+
+        .values {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 2rem;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .value-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #E8E8E8;
+        }
+
+        .about-text h3 {
+            color: #F39C12;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .skills-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .skills-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .skills-list li::before {
+            content: "▲";
+            position: absolute;
+            left: 0;
+            color: #F39C12;
+            font-weight: bold;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 6rem 0;
+            background: #2A2A2A;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #E8E8E8;
+            font-weight: 600;
+        }
+
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            height: 200px;
+        }
+
+        .testimonial {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            text-align: center;
+        }
+
+        .testimonial.active {
+            opacity: 1;
+        }
+
+        .testimonial-quote {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #E8E8E8;
+            font-style: italic;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .testimonial-quote::before {
+            content: """;
+            font-size: 4rem;
+            color: #F39C12;
+            position: absolute;
+            top: -20px;
+            left: -40px;
+            line-height: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #F39C12;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-role {
+            color: #B8B8B8;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(243, 156, 18, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #F39C12;
+            transform: scale(1.2);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background: #0A0A0A;
+            position: relative;
+        }
+
+        .services::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #E8E8E8;
+            font-weight: 600;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #111111, #0A0A0A);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 20px rgba(243, 156, 18, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(243, 156, 18, 0.2);
+            cursor: pointer;
+            position: relative;
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(243, 156, 18, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .service-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #F39C12, #FF6B6B);
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 40px rgba(243, 156, 18, 0.3);
+            border-color: rgba(243, 156, 18, 0.6);
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #F39C12, #FF6B6B);
+            border-radius: 12px;
+            color: #1A1A1A;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(243, 156, 18, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .service-card h3 {
+            color: #E8E8E8;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #B8B8B8;
+            line-height: 1.6;
+        }
+
+        /* Work Samples Section */
+        .work-samples {
+            padding: 6rem 0;
+            background: #222222;
+        }
+
+        .work-samples h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #E8E8E8;
+            font-weight: 600;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .work-card {
+            background: #1A1A1A;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(243, 156, 18, 0.2);
+            cursor: pointer;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .work-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            border-color: rgba(243, 156, 18, 0.5);
+        }
+
+        .work-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #F39C12, #FF6B6B);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .work-card:hover::before {
+            opacity: 1;
+        }
+
+        .work-image {
+            width: 100%;
+            height: 240px;
+            background: #2A2A2A;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .work-card:hover .work-image img {
+            transform: scale(1.05);
+        }
+
+        .work-image::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.1), rgba(255, 107, 107, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .work-card:hover .work-image::after {
+            opacity: 1;
+        }
+
+        .work-content {
+            padding: 2rem;
+        }
+
+        .work-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #E8E8E8;
+            margin-bottom: 0.5rem;
+        }
+
+        .work-description {
+            color: #B8B8B8;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .work-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: linear-gradient(135deg, #2A2A2A, #333333);
+            color: #666666;
+            font-size: 3rem;
+            border-bottom: 1px solid rgba(243, 156, 18, 0.1);
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(42, 42, 42, 0.9) 100%);
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #F39C12, #FF6B6B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Footer */
+        footer {
+            background: #0F0F0F;
+            color: #888888;
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(243, 156, 18, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .about-content { grid-template-columns: 1fr; gap: 2rem; }
+            .nav-links { display: none; }
+            .testimonial-quote { font-size: 1.1rem; }
+            .testimonial-quote::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="AT-logo.png" alt="Amanda Tasker Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="process.html">Process</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about">About/CV</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <!-- Video Background -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="Grand_Canyon_Sunset_Video_Ready.mp4" type="video/mp4">
+        </video>
+        
+        <!-- Gradient Overlay -->
+        <div class="hero-overlay"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1>I Turn Complex Challenges Into Beautiful User Journeys</h1>
+                <h2>Helping growing companies discover, design, and deliver experiences that truly connect</h2>
+                <p>Strategic Experience Designer on a mission to explore creative solutions for real user problems. Using proven methodologies and a love for visual storytelling, I help teams navigate from complex requirements to compelling experiences that work beautifully.</p>
+                <a href="#contact" class="cta-button">Start Our Design Adventure</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="pathway">
+        <div class="pathway-markers">
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+        </div>
+    </div>
+
+    <section class="about" id="about">
+        <div class="container">
+            <h2>Design With Curiosity, Powered By Proven Pathways</h2>
+            <div class="about-content">
+                <div class="about-visual">
+                    <img src="288633082_10158615481140849_5191657285568583142_n.jpg" alt="Amanda Tasker - Strategic Experience Designer" style="width: 100%; height: 300px; object-fit: cover; border-radius: 15px; margin-bottom: 1.5rem;">
+                    <h3>Strategic Experience Designer</h3>
+                    <p>Navigating the landscape of user experience with curiosity and creativity</p>
+                    <div class="values">
+                        <span class="value-tag">Adventure</span>
+                        <span class="value-tag">Curiosity</span>
+                        <span class="value-tag">Openness</span>
+                        <span class="value-tag">Innovation</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>What drives me:</h3>
+                    <p style="margin-bottom: 3rem;">Companies with clear vision and bold ideas. I thrive when exploring new territories and uncovering insights others might miss. From enterprise software that transforms how professionals work to consumer apps that spark joy in everyday moments, I'm energized by projects where thoughtful design creates real impact.</p>
+                    
+                    <h3>What I bring to the journey:</h3>
+                    <ul class="skills-list">
+                        <li>Strategic UX research and design using proven methodologies</li>
+                        <li>Compelling presentation skills that align stakeholders around a vision</li>
+                        <li>Creative problem-solving that discovers solutions others miss</li>
+                        <li>Cross-disciplinary experience in 3D modeling, video production, and interactive design</li>
+                        <li>Collaborative leadership that keeps teams moving forward confidently</li>
+                        <li>Adventure across industries: agriculture tech, food service, transportation, and beyond</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Teams Say About Our Journeys Together</h2>
+            <div class="testimonial-container">
+                <div class="testimonial active">
+                    <div class="testimonial-quote">
+                        "Amanda Tasker is a stellar team player. Her inclusive and enthusiastic outlook is an invaluable asset. Her artistic contributions bring creative visions to life, and her work is of a professional standard that brings out the best in her department."
+                    </div>
+                    <div class="testimonial-author">Jacob Ruttenberg</div>
+                    <div class="testimonial-role">VO Designer at Riot Games</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-quote">
+                        "I enthusiastically endorse Amanda for her innovative spirit and collaborative nature. She is a quick learner who approaches every challenge with enthusiasm and creativity. Amanda's positive attitude and dedication make her an invaluable team member."
+                    </div>
+                    <div class="testimonial-author">Chrissy Puga</div>
+                    <div class="testimonial-role">Founder and Product Designer</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-quote">
+                        "I was thoroughly impressed with Amanda's attention to detail and willingness to learn. Her dedication to addressing critique and bringing positivity to every meeting was greatly appreciated. Her enthusiasm was infectious, and I would love to work with her again."
+                    </div>
+                    <div class="testimonial-author">Joanna Yu</div>
+                    <div class="testimonial-role">User Experience Researcher at Bandai Namco Entertainment</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-quote">
+                        "Amanda has a wide range of knowledge and expertise. She is very good at public speaking, illustrating, communicating, and animation. Her drive and ambition drive her to accomplish things on time and very well done."
+                    </div>
+                    <div class="testimonial-author">Dan Zuperku</div>
+                    <div class="testimonial-role">Assistant Director, Detection Engineering</div>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <div class="dot active" onclick="showTestimonial(0)"></div>
+                <div class="dot" onclick="showTestimonial(1)"></div>
+                <div class="dot" onclick="showTestimonial(2)"></div>
+                <div class="dot" onclick="showTestimonial(3)"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="pathway">
+        <div class="pathway-markers">
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+        </div>
+    </div>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2>How I Guide Teams On Successful Design Journeys</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">01</div>
+                    <h3>UX Strategy & Discovery</h3>
+                    <p>Using the Black Diamond methodology, I explore who your users really are and what challenges actually need solving. Then I map out findings through compelling storytelling that gets your whole team excited about the path forward.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">02</div>
+                    <h3>Product Design & Prototyping</h3>
+                    <p>From wireframes to high-fidelity prototypes, I craft experiences that solve real user problems while staying true to your brand vision. Every design decision is grounded in research and validated through user testing.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">03</div>
+                    <h3>Design Leadership & Navigation</h3>
+                    <p>Perfect for growing companies that need strategic design guidance without the overhead. I help you make confident design decisions, establish clear design systems, and avoid the "too many voices" trap that stalls progress.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">04</div>
+                    <h3>Interactive & Visual Experiences</h3>
+                    <p>Specializing in designs that engage and guide users - from educational platforms and gaming interfaces to consumer apps and professional tools. I excel at projects where user journey, visual storytelling, and clear communication create magic together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="work-samples">
+        <div class="container">
+            <h2>Featured Work & Adventures</h2>
+            <div class="work-grid">
+                <div class="work-card" onclick="goToPortfolio('project1')">
+                    <div class="work-image">
+                        <div class="work-placeholder">📱</div>
+                        <!-- Replace with: <img src="project1-thumbnail.jpg" alt="Project 1"> -->
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">CNH Industrial UX Redesign</h3>
+                        <p class="work-description">Transforming complex agricultural interfaces into intuitive user experiences for farming professionals.</p>
+                    </div>
+                </div>
+
+                <div class="work-card" onclick="goToPortfolio('project2')">
+                    <div class="work-image">
+                        <div class="work-placeholder">🍕</div>
+                        <!-- Replace with: <img src="project2-thumbnail.jpg" alt="Project 2"> -->
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">Pizza App Interface Design</h3>
+                        <p class="work-description">Creating a delightful ordering experience that increased user engagement and conversion rates.</p>
+                    </div>
+                </div>
+
+                <div class="work-card" onclick="goToPortfolio('project3')">
+                    <div class="work-image">
+                        <div class="work-placeholder">🎮</div>
+                        <!-- Replace with: <img src="project3-thumbnail.jpg" alt="Project 3"> -->
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">Dreamland Confectionery 3D Art</h3>
+                        <p class="work-description">Bringing whimsical game characters to life through detailed 3D modeling and creative design.</p>
+                    </div>
+                </div>
+
+                <div class="work-card" onclick="goToPortfolio('project4')">
+                    <div class="work-image">
+                        <div class="work-placeholder">📚</div>
+                        <!-- Replace with: <img src="project4-thumbnail.jpg" alt="Project 4"> -->
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">Todd Strider Interactive Series</h3>
+                        <p class="work-description">Educational interactive video series teaching children moral decision-making through engaging storytelling.</p>
+                    </div>
+                </div>
+
+                <div class="work-card" onclick="goToPortfolio('project5')">
+                    <div class="work-image">
+                        <div class="work-placeholder">🚛</div>
+                        <!-- Replace with: <img src="project5-thumbnail.jpg" alt="Project 5"> -->
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">Transportation Platform UX</h3>
+                        <p class="work-description">Streamlining complex logistics workflows for improved efficiency and user satisfaction.</p>
+                    </div>
+                </div>
+
+                <div class="work-card" onclick="goToPortfolio('project6')">
+                    <div class="work-image">
+                        <div class="work-placeholder">🎨</div>
+                        <!-- Replace with: <img src="project6-thumbnail.jpg" alt="Project 6"> -->
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">Creative Brand Illustrations</h3>
+                        <p class="work-description">Custom illustrations and visual storytelling for diverse brands and creative projects.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="pathway">
+        <div class="pathway-markers">
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+        </div>
+    </div>
+
+    <section class="footer-cta">
+        <!-- Video Background for CTA -->
+        <video class="hero-video" autoplay muted loop playsinline style="opacity: 0.4;">
+            <source src="bmx-goggles-canyon.mp4" type="video/mp4">
+        </video>
+        
+        <div class="container" style="position: relative; z-index: 3; text-align: center;">
+            <h2>Ready To Embark On Something Amazing?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; font-weight: 500; color: #E8E8E8;">I'm currently accepting contract and part-time opportunities with growing companies ready to explore bold new user experiences.</p>
+            <a href="#contact" class="cta-button">Begin Our Design Journey</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Strategic design adventures for growing companies</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">© 2025 Amanda Tasker - Let's explore together</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.dot');
+
+        function showTestimonial(index) {
+            // Remove active class from all testimonials and dots
+            testimonials.forEach(t => t.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            
+            // Add active class to selected testimonial and dot
+            testimonials[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            currentTestimonial = index;
+        }
+
+        // Auto-rotate testimonials every 5 seconds
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+
+        // Portfolio navigation function
+        function goToPortfolio(projectId) {
+            // This will be updated when you create the portfolio page
+            // For now, it can scroll to a section or show an alert
+            console.log('Navigate to portfolio project:', projectId);
+            // Example: window.location.href = '#portfolio-' + projectId;
+        }
+    </script>
+</body>
+</html>

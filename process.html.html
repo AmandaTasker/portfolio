@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process - Amanda Tasker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #E8E8E8;
+            background: #0A0A0A;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1A1A1A, #0A0A0A);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(243, 156, 18, 0.1);
+            border-bottom: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: none;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: none;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #E8E8E8;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #F39C12;
+            transform: translateY(-1px);
+        }
+
+        .nav-links a.active {
+            color: #F39C12;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #F39C12, #FF6B6B);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(26, 26, 26, 0.95) 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 50px 50px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(243, 156, 18, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(255, 107, 107, 0.08) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30L15 15L30 0L45 15L30 30Z' fill='%23F39C12' fill-opacity='0.03'/%3E%3C/svg%3E") repeat;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #F39C12, #FF6B6B, #F39C12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(243, 156, 18, 0.3));
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .diamond-visual {
+            width: 300px;
+            height: 150px;
+            margin: 2rem auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .double-diamond {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .diamond-shape {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #F39C12, #FF6B6B);
+            transform: rotate(45deg);
+            border-radius: 20px;
+            position: absolute;
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .diamond-left {
+            left: 20px;
+            animation-delay: 0s;
+        }
+
+        .diamond-right {
+            right: 20px;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: rotate(45deg) translateY(0px) scale(1); 
+                opacity: 0.9;
+            }
+            50% { 
+                transform: rotate(45deg) translateY(-8px) scale(1.05); 
+                opacity: 1;
+            }
+        }
+
+        .diamond-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #1A1A1A;
+            font-weight: 700;
+            font-size: 1.3rem;
+            z-index: 10;
+            text-shadow: 0 2px 8px rgba(255,255,255,0.8);
+        }
+
+        /* Pathway Divider */
+        .pathway {
+            height: 80px;
+            background: #0A0A0A;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pathway::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -50px;
+            right: -50px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #F39C12, #FF6B6B, #F39C12, transparent);
+            transform: translateY(-50%);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(243, 156, 18, 0.5);
+        }
+
+        .pathway-markers {
+            position: absolute;
+            top: 50%;
+            left: 15%;
+            right: 15%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .marker {
+            width: 10px;
+            height: 10px;
+            background: #F39C12;
+            border-radius: 50%;
+            border: 1px solid #0A0A0A;
+            box-shadow: 0 0 15px rgba(243, 156, 18, 0.8), inset 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Process Sections */
+        .process-section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .process-section:nth-child(even) {
+            background: linear-gradient(135deg, #111111, #0A0A0A);
+        }
+
+        .process-section:nth-child(odd) {
+            background: #0A0A0A;
+        }
+
+        .process-section:nth-child(even)::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(243, 156, 18, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .process-section:nth-child(odd)::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #F39C12, #FF6B6B);
+            border-radius: 12px;
+            color: #1A1A1A;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 0 20px rgba(243, 156, 18, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #E8E8E8;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: #F39C12;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .process-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .process-content.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .process-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: rgba(243, 156, 18, 0.3);
+            background: linear-gradient(135deg, #111111, #0A0A0A);
+            border-radius: 20px;
+            min-height: 500px;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+            box-shadow: 0 0 30px rgba(243, 156, 18, 0.1), inset 0 0 20px rgba(255, 107, 107, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-visual::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(243, 156, 18, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .process-list {
+            list-style: none;
+        }
+
+        .process-list li {
+            padding: 1rem 0;
+            position: relative;
+            padding-left: 3rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            border-bottom: 1px solid rgba(243, 156, 18, 0.1);
+        }
+
+        .process-list li:last-child {
+            border-bottom: none;
+        }
+
+        .process-list li::before {
+            content: "▲";
+            position: absolute;
+            left: 0;
+            top: 1.2rem;
+            color: #F39C12;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .process-list strong {
+            color: #F39C12;
+            font-weight: 600;
+        }
+
+        /* Advantages Section */
+        .advantages {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #111111, #0A0A0A);
+            text-align: center;
+            position: relative;
+        }
+
+        .advantages::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .advantages h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #E8E8E8;
+            margin-bottom: 1rem;
+        }
+
+        .advantages-subtitle {
+            font-size: 1.3rem;
+            color: #F39C12;
+            font-style: italic;
+            margin-bottom: 4rem;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .advantage-card {
+            background: linear-gradient(135deg, #111111, #0A0A0A);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 20px rgba(243, 156, 18, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(243, 156, 18, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .advantage-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #F39C12, #FF6B6B);
+        }
+
+        .advantage-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(243, 156, 18, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 40px rgba(243, 156, 18, 0.3);
+            border-color: rgba(243, 156, 18, 0.6);
+        }
+
+        .advantage-card:hover::after {
+            opacity: 1;
+        }
+
+        .advantage-icon {
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .advantage-icon.lightning {
+            background: linear-gradient(135deg, #F39C12, #FF6B6B);
+            color: #1A1A1A;
+            font-size: 2rem;
+            border-radius: 8px;
+            transform: rotate(15deg);
+            box-shadow: 0 0 20px rgba(243, 156, 18, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .advantage-icon.hexagon {
+            background: linear-gradient(135deg, #F39C12, #FF6B6B);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            border-radius: 0;
+        }
+
+        .advantage-icon.sharp-diamond {
+            background: linear-gradient(135deg, #F39C12, #FF6B6B);
+            transform: rotate(45deg);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .advantage-icon.sharp-diamond::before {
+            content: "";
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            right: 15%;
+            bottom: 15%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+            transform: rotate(-45deg);
+        }
+
+        .advantage-icon.blade {
+            background: linear-gradient(135deg, #F39C12, #FF6B6B);
+            clip-path: polygon(0% 40%, 100% 0%, 100% 60%, 0% 100%);
+            border-radius: 0;
+            transform: rotate(10deg);
+        }
+
+        .advantage-card h3 {
+            color: #E8E8E8;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .advantage-card p {
+            color: #B8B8B8;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(26, 26, 26, 0.95) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .cta-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(243, 156, 18, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 30% 70%, rgba(255, 107, 107, 0.08) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #F39C12, #FF6B6B, #F39C12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(243, 156, 18, 0.3));
+            letter-spacing: -0.02em;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #F39C12, #FF6B6B);
+            color: #1A1A1A;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(243, 156, 18, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .process-content { 
+                grid-template-columns: 1fr; 
+                gap: 3rem; 
+            }
+            .process-content.reverse {
+                grid-template-columns: 1fr;
+            }
+            .process-visual { 
+                font-size: 4rem; 
+                min-height: 400px;
+                order: 2;
+            }
+            .process-list {
+                order: 1;
+            }
+            .nav-links { display: none; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="AT-logo.png" alt="Amanda Tasker Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="process.html" class="active">Process</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="about.html">About/CV</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="container">
+                <h1>The Black Diamond Method</h1>
+                <p>Where strategy meets creative innovation. A proven framework that transforms complex challenges into elegant solutions through systematic exploration and cross-disciplinary expertise.</p>
+                
+                <div class="diamond-visual">
+                    <div class="double-diamond">
+                        <div class="diamond-shape diamond-left"></div>
+                        <div class="diamond-shape diamond-right"></div>
+                        <div class="diamond-text">PROCESS</div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 2rem; font-size: 1.1rem; opacity: 0.8;">Proven process, creative outcomes</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="pathway">
+        <div class="pathway-markers">
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+        </div>
+    </div>
+
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">01</div>
+                <h2 class="section-title">Discovery Phase</h2>
+                <p class="section-subtitle">"Exploring the Territory"</p>
+            </div>
+            
+            <div class="process-content">
+                <div class="process-visual">⛰️</div>
+                <ul class="process-list">
+                    <li><strong>User Research & Stakeholder Interviews:</strong> Deep dives into user behavior, pain points, and goals through comprehensive research methodologies</li>
+                    <li><strong>Brand Story Discovery & Visual Language Exploration:</strong> Using film and concepting methods to uncover how your brand tells its story beyond just a logo - through every design element, interaction, and user touchpoint</li>
+                    <li><strong>Problem Definition & Opportunity Mapping:</strong> Clear articulation of challenges and identification of strategic opportunities for impact</li>
+                    <li><strong>AI-Enhanced Archetype Generation:</strong> Leveraging advanced tools to create nuanced user archetypes based on real data and behavioral patterns</li>
+                    <li><strong>"How Might We" Question Development:</strong> Collaborative problem-framing sessions that open creative possibilities</li>
+                    <li><strong>Competitive Analysis & Market Insights:</strong> Understanding the landscape to identify differentiation opportunities and industry best practices</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">02</div>
+                <h2 class="section-title">Development Phase</h2>
+                <p class="section-subtitle">"Charting the Path Forward"</p>
+            </div>
+            
+            <div class="process-content reverse">
+                <ul class="process-list">
+                    <li><strong>Creative Ideation & Concept Development:</strong> Systematic exploration of solutions through structured brainstorming and concept refinement</li>
+                    <li><strong>Brand Voice & Visual Storytelling Integration:</strong> Translating your discovered brand story into a cohesive visual language and voice that makes your website and products grab attention unlike any competitor</li>
+                    <li><strong>Cross-Disciplinary Design:</strong> Integrating UX, 3D modeling, animation, and visual design for holistic user experiences that tell your story</li>
+                    <li><strong>AI-Driven Content Testing & Iteration:</strong> Using intelligent tools to test messaging, content effectiveness, and user flow optimization</li>
+                    <li><strong>Stakeholder Alignment Through Visual Storytelling:</strong> Compelling presentations that unite teams around a shared vision and brand narrative</li>
+                    <li><strong>Technical Feasibility Assessment:</strong> Ensuring designs are both innovative and implementable within technical and business constraints</li>
+                </ul>
+                <div class="process-visual">🗺️</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">03</div>
+                <h2 class="section-title">Delivery Phase</h2>
+                <p class="section-subtitle">"Reaching the Summit Together"</p>
+            </div>
+            
+            <div class="process-content">
+                <div class="process-visual">🚀</div>
+                <ul class="process-list">
+                    <li><strong>Prototyping & User Testing Expeditions:</strong> Building and testing interactive prototypes with real users to validate design decisions</li>
+                    <li><strong>Motion Design & Interactive Elements:</strong> Adding animation and micro-interactions that enhance usability and delight</li>
+                    <li><strong>Design System Development:</strong> Creating scalable, consistent design frameworks that support long-term product growth</li>
+                    <li><strong>Cross-Platform Implementation Support:</strong> Ensuring seamless translation from design to development across all platforms</li>
+                    <li><strong>Launch Strategy & Post-Launch Optimization:</strong> Supporting successful launches and iterating based on real-world performance data</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="pathway">
+        <div class="pathway-markers">
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+        </div>
+    </div>
+
+    <section class="advantages">
+        <div class="container">
+            <h2>What Makes This Journey Different</h2>
+            <p class="advantages-subtitle">"Your unique advantages in every project"</p>
+            
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon lightning"></div>
+                    <h3>AI-Enhanced Research Flows</h3>
+                    <p>Leveraging cutting-edge AI tools for archetype generation, content testing, and research automation that delivers deeper insights faster.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon hexagon"></div>
+                    <h3>Cross-Industry Experience</h3>
+                    <p>From agricultural technology to gaming entertainment, bringing fresh perspectives and proven solutions across diverse markets.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon blade"></div>
+                    <h3>Visual Storytelling Integration</h3>
+                    <p>Combining illustration, animation, and 3D design with strategic UX to create experiences that truly resonate and engage.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon sharp-diamond"></div>
+                    <h3>Technical + Creative Hybrid</h3>
+                    <p>Bridging the gap between creative vision and technical implementation with deep understanding of both domains.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <div class="container">
+                <h2>Ready To Embark On Something Amazing?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; color: #E8E8E8; font-weight: 500;">I'm currently accepting contract and part-time opportunities with growing companies ready to explore bold new user experiences.</p>
+                <a href="contact.html" class="cta-button">Begin Our Design Journey</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
